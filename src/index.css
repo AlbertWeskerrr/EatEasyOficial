@@ -1,0 +1,674 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap");
+
+@layer base {
+  :root {
+    --background: 0 0% 96%;
+    --foreground: 0 0% 9%;
+
+    --card: 0 0% 98%;
+    --card-foreground: 0 0% 9%;
+
+    --popover: 0 0% 89%;
+    --popover-foreground: 0 0% 9%;
+
+    --primary: 20 90% 48%;
+    --primary-foreground: 33 100% 96%;
+
+    --secondary: 0 0% 32%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 63%;
+    --muted-foreground: 0 0% 9%;
+
+    --accent: 47 100% 96%;
+    --accent-foreground: 37 92% 50%;
+
+    --destructive: 0 72% 50%;
+    --destructive-foreground: 0 85% 97%;
+
+    --border: 0 0% 83%;
+    --input: 0 0% 83%;
+    --ring: 20 90% 48%;
+
+    --radius: 0.75rem;
+
+    /* Easy Eat Brand Colors - OFFICIAL PALETTE */
+    --easyeat-primary: 50 100% 50%;      /* #FFDD00 - Yellow */
+    --easyeat-secondary: 48 100% 46%;    /* #FFD700 - Gold hover */
+    --easyeat-tertiary: 43 74% 49%;      /* #DAA520 - Goldenrod active */
+    --easyeat-dark: 0 0% 12%;            /* #1F1F1F - Text primary */
+    --easyeat-light: 0 0% 98%;           /* #FAFAFA - Backgrounds */
+    --easyeat-white: 0 0% 100%;          /* #FFFFFF - Inputs/cards */
+    --easyeat-border: 0 0% 83%;          /* #D3D3D3 - Borders */
+    --easyeat-text-secondary: 0 0% 40%;  /* #666666 - Secondary text */
+    --easyeat-success: 142 70% 45%;      /* #22C55E - Success */
+    --easyeat-alert: 24 95% 53%;         /* #F97316 - Warning */
+    --easyeat-error: 0 84% 60%;          /* #EF4444 - Error */
+
+    /* Theme colors - default to Easy Eat Yellow */
+    --theme-primary: 50 100% 50%;
+    --theme-secondary: 48 100% 46%;
+    --theme-dark: 0 0% 12%;
+    --theme-light: 50 100% 95%;
+    --theme-gradient: linear-gradient(135deg, hsl(50 100% 50%) 0%, hsl(48 100% 46%) 100%);
+
+    /* Chart colors */
+    --chart-protein: 142 70% 45%;
+    --chart-carbs: 24 95% 53%;
+    --chart-fat: 0 72% 51%;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+    --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.1);
+    --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 4px 6px -1px hsl(0 0% 0% / 0.1);
+    --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 0 0% 9%;
+    --sidebar-primary: 20 90% 48%;
+    --sidebar-primary-foreground: 33 100% 96%;
+    --sidebar-accent: 0 0% 32%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 0 0% 83%;
+    --sidebar-ring: 20 90% 48%;
+    --chart-1: 27 95% 60%;
+    --chart-2: 43 96% 56%;
+    --chart-3: 47 95% 53%;
+    --chart-4: 24 94% 53%;
+    --chart-5: 0 0% 45%;
+    --sidebar: 0 0% 98%;
+    --font-sans: 'Roboto', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+    --font-serif: 'Libre Caslon Text', ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+    --font-mono: 'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+    --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+    --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+    --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+    --tracking-normal: 0em;
+    --spacing: 0.25rem;
+  }
+
+  /* Theme: Blue */
+  [data-theme="azul"],
+  .theme-azul {
+    --theme-primary: 217 91% 60%;
+    --theme-secondary: 224 76% 48%;
+    --theme-dark: 226 71% 40%;
+    --theme-light: 214 95% 93%;
+    --theme-gradient: linear-gradient(135deg, hsl(217 91% 60%) 0%, hsl(226 71% 40%) 100%);
+    --primary: 217 91% 60%;
+    --accent: 217 91% 60%;
+    --ring: 217 91% 60%;
+  }
+
+  /* Theme: Pink */
+  [data-theme="rosa"],
+  .theme-rosa {
+    --theme-primary: 330 81% 60%;
+    --theme-secondary: 335 78% 42%;
+    --theme-dark: 338 90% 30%;
+    --theme-light: 330 100% 95%;
+    --theme-gradient: linear-gradient(135deg, hsl(330 81% 60%) 0%, hsl(338 90% 30%) 100%);
+    --primary: 330 81% 60%;
+    --accent: 330 81% 60%;
+    --ring: 330 81% 60%;
+  }
+
+  /* Theme: Orange */
+  [data-theme="laranja"],
+  .theme-laranja {
+    --theme-primary: 24 95% 53%;
+    --theme-secondary: 21 90% 48%;
+    --theme-dark: 17 88% 40%;
+    --theme-light: 38 92% 95%;
+    --theme-gradient: linear-gradient(135deg, hsl(24 95% 53%) 0%, hsl(17 88% 40%) 100%);
+    --primary: 24 95% 53%;
+    --accent: 24 95% 53%;
+    --ring: 24 95% 53%;
+  }
+
+  /* Theme: Yellow (default Easy Eat) */
+  [data-theme="amarelo"],
+  .theme-amarelo {
+    --theme-primary: 50 100% 50%;
+    --theme-secondary: 48 100% 46%;
+    --theme-dark: 0 0% 12%;
+    --theme-light: 50 100% 95%;
+    --theme-gradient: linear-gradient(135deg, hsl(50 100% 50%) 0%, hsl(48 100% 46%) 100%);
+    --primary: 50 100% 50%;
+    --accent: 50 100% 50%;
+    --ring: 50 100% 50%;
+  }
+
+  /* Legacy theme classes for sex-based themes */
+  .theme-male {
+    --theme-primary: 217 91% 60%;
+    --theme-secondary: 224 76% 48%;
+    --theme-dark: 226 71% 40%;
+    --theme-light: 214 95% 93%;
+    --theme-gradient: linear-gradient(135deg, hsl(217 91% 60%) 0%, hsl(226 71% 40%) 100%);
+    --primary: 217 91% 60%;
+    --accent: 217 91% 60%;
+    --ring: 217 91% 60%;
+  }
+
+  .theme-female {
+    --theme-primary: 330 81% 60%;
+    --theme-secondary: 335 78% 42%;
+    --theme-dark: 338 90% 30%;
+    --theme-light: 330 100% 95%;
+    --theme-gradient: linear-gradient(135deg, hsl(330 81% 60%) 0%, hsl(338 90% 30%) 100%);
+    --primary: 330 81% 60%;
+    --accent: 330 81% 60%;
+    --ring: 330 81% 60%;
+  }
+
+  .theme-other {
+    --theme-primary: 24 95% 53%;
+    --theme-secondary: 21 90% 48%;
+    --theme-dark: 17 88% 40%;
+    --theme-light: 38 92% 95%;
+    --theme-gradient: linear-gradient(135deg, hsl(24 95% 53%) 0%, hsl(17 88% 40%) 100%);
+    --primary: 24 95% 53%;
+    --accent: 24 95% 53%;
+    --ring: 24 95% 53%;
+  }
+
+  .dark {
+    --background: 0 0% 9%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 14%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 25%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 27 95% 60%;
+    --primary-foreground: 12 81% 14%;
+
+    --secondary: 0 0% 45%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 45%;
+    --muted-foreground: 0 0% 98%;
+
+    --accent: 20 91% 14%;
+    --accent-foreground: 43 96% 56%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 85% 97%;
+
+    --border: 0 0% 32%;
+    --input: 0 0% 32%;
+    --ring: 27 95% 60%;
+
+    --easyeat-dark: 0 0% 95%;
+    --easyeat-text-secondary: 0 0% 70%;
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 27 95% 60%;
+    --sidebar-primary-foreground: 12 81% 14%;
+    --sidebar-accent: 43 96% 56%;
+    --sidebar-accent-foreground: 20 91% 14%;
+    --sidebar-border: 0 0% 32%;
+    --sidebar-ring: 27 95% 60%;
+    --chart-1: 30 97% 72%;
+    --chart-2: 45 96% 64%;
+    --chart-3: 48 96% 76%;
+    --chart-4: 27 95% 60%;
+    --chart-5: 0 0% 45%;
+    --sidebar: 0 0% 14%;
+    --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+    --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+    --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+    --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+    --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.1);
+    --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 4px 6px -1px hsl(0 0% 0% / 0.1);
+    --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1);
+    --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* Ensure all labels have proper contrast */
+  label {
+    @apply text-foreground font-medium;
+  }
+}
+
+@layer utilities {
+  .gradient-theme {
+    background: var(--theme-gradient);
+  }
+
+  .text-theme-primary {
+    color: hsl(var(--theme-primary));
+  }
+
+  .bg-theme-primary {
+    background-color: hsl(var(--theme-primary));
+  }
+
+  .bg-theme-light {
+    background-color: hsl(var(--theme-light));
+  }
+
+  .border-theme-primary {
+    border-color: hsl(var(--theme-primary));
+  }
+
+  .ring-theme-primary {
+    --tw-ring-color: hsl(var(--theme-primary));
+  }
+
+  .shadow-theme {
+    box-shadow: 0 10px 30px -10px hsl(var(--theme-primary) / 0.3);
+  }
+
+  .progress-protein {
+    background-color: hsl(var(--chart-protein));
+  }
+
+  .progress-carbs {
+    background-color: hsl(var(--chart-carbs));
+  }
+
+  .progress-fat {
+    background-color: hsl(var(--chart-fat));
+  }
+
+  /* Easy Eat brand utilities */
+  .text-easyeat-dark {
+    color: hsl(var(--easyeat-dark));
+  }
+
+  .text-easyeat-secondary {
+    color: hsl(var(--easyeat-text-secondary));
+  }
+
+  .bg-easyeat-yellow {
+    background-color: hsl(var(--easyeat-primary));
+  }
+
+  .bg-easyeat-yellow-dark {
+    background-color: hsl(var(--easyeat-secondary));
+  }
+
+  .bg-easyeat-yellow-light {
+    background-color: hsl(50 100% 95%);
+  }
+
+  .border-easyeat-yellow {
+    border-color: hsl(var(--easyeat-primary));
+  }
+
+  /* PDF export: force light tokens regardless of current theme */
+  .pdf-export {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 9%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 30%;
+    --border: 0 0% 85%;
+    --input: 0 0% 85%;
+    --ring: var(--primary);
+  }
+}
+
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.5);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-soft {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s ease-out forwards;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2s ease-in-out infinite;
+}
+
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+
+/* Button states - NEVER INVISIBLE */
+button,
+[role="button"] {
+  visibility: visible !important;
+  display: inline-flex !important;
+}
+
+button:active,
+[role="button"]:active {
+  transform: translateY(1px);
+  visibility: visible !important;
+}
+
+button:focus,
+[role="button"]:focus {
+  visibility: visible !important;
+}
+
+/* ============================================= */
+/* LIGHT MODE - DEFAULT STYLES                  */
+/* ============================================= */
+
+/* Base text and backgrounds for light mode */
+body {
+  color: #1F1F1F !important;
+  background-color: hsl(var(--background)) !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #1F1F1F !important;
+}
+
+label {
+  color: #1F1F1F !important;
+}
+
+p {
+  color: #1F1F1F !important;
+}
+
+span:not(.dark span) {
+  color: inherit;
+}
+
+/* Form elements - light mode */
+input,
+textarea,
+select {
+  color: #1F1F1F !important;
+  background-color: #FFFFFF !important;
+  border-color: #E0E0E0 !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #666666 !important;
+}
+
+/* Cards - light mode */
+.card,
+[data-slot="card"] {
+  background-color: #FFFFFF !important;
+  color: #1F1F1F !important;
+}
+
+/* ============================================= */
+/* DARK MODE - OVERRIDE STYLES WITH !important  */
+/* ============================================= */
+
+.dark body,
+.dark {
+  color: #FFFFFF !important;
+  background-color: #171717 !important;
+}
+
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6 {
+  color: #FFFFFF !important;
+}
+
+.dark label {
+  color: #FFFFFF !important;
+}
+
+.dark p {
+  color: #F2F2F2 !important;
+}
+
+/* Apply default light text in dark mode ONLY when element has no explicit text-* class */
+.dark span:not([class*="text-"]) {
+  color: #F2F2F2 !important;
+}
+
+/* Form elements - dark mode */
+.dark input,
+.dark textarea,
+.dark select {
+  color: #FFFFFF !important;
+  background-color: #333333 !important;
+  border-color: #444444 !important;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #AAAAAA !important;
+}
+
+/* Cards - dark mode */
+.dark .card,
+.dark [data-slot="card"] {
+  background-color: #242424 !important;
+  color: #FFFFFF !important;
+}
+
+/* Badges in dark mode */
+.dark .badge {
+  color: #FFFFFF !important;
+}
+
+/* Buttons text in dark mode */
+.dark button {
+  color: inherit;
+}
+
+/* Links in dark mode */
+.dark a {
+  color: #FFE644 !important;
+}
+
+/* Muted text in dark mode */
+.dark .text-muted-foreground {
+  color: #AAAAAA !important;
+}
+
+/* Secondary text in dark mode */
+.dark .text-secondary-foreground {
+  color: #F2F2F2 !important;
+}
+
+/* ============================================= */
+/* LIGHT THEME CLASS - Force light mode         */
+/* ============================================= */
+
+.light,
+.light body {
+  color: #1F1F1F !important;
+  background-color: hsl(var(--background)) !important;
+}
+
+.light h1,
+.light h2,
+.light h3,
+.light h4,
+.light h5,
+.light h6 {
+  color: #1F1F1F !important;
+}
+
+.light label {
+  color: #1F1F1F !important;
+}
+
+.light p {
+  color: #1F1F1F !important;
+}
+
+/* If the page is in dark mode but a section is forced to light (login/onboarding),
+   keep default text dark for spans that don't have an explicit text-* class. */
+.dark .light span:not([class*="text-"]) {
+  color: #1F1F1F !important;
+}
+
+.light input,
+.light textarea,
+.light select {
+  color: #1F1F1F !important;
+  background-color: #FFFFFF !important;
+  border-color: #E0E0E0 !important;
+}
+
+.light input::placeholder,
+.light textarea::placeholder {
+  color: #666666 !important;
+}
+
+.light .card,
+.light [data-slot="card"] {
+  background-color: #FFFFFF !important;
+  color: #1F1F1F !important;
+}
+
+/* Onboarding cards - always light */
+.bg-white input,
+.bg-white textarea,
+.bg-white select {
+  color: #1F1F1F !important;
+  background-color: #FFFFFF !important;
+}
+
+/* Welcome overlay in dark mode */
+.dark .bg-card {
+  background-color: #242424 !important;
+}
+
+.dark .text-card-foreground {
+  color: #FFFFFF !important;
+}
+
+/* ============================================= */
+/* PDF EXPORT - Force light styles even in dark  */
+/* ============================================= */
+
+/* Ensure the PDF subtree never inherits dark-mode "!important" text colors */
+.dark .pdf-export,
+.pdf-export {
+  background-color: hsl(var(--background)) !important;
+  color: hsl(var(--foreground)) !important;
+}
+
+.dark .pdf-export h1,
+.dark .pdf-export h2,
+.dark .pdf-export h3,
+.dark .pdf-export h4,
+.dark .pdf-export h5,
+.dark .pdf-export h6,
+.dark .pdf-export p,
+.dark .pdf-export label,
+.dark .pdf-export li,
+.dark .pdf-export td,
+.dark .pdf-export th {
+  color: hsl(var(--foreground)) !important;
+}
+
+/* In dark mode we have span color overrides; neutralize them inside PDF */
+.dark .pdf-export span:not([class*="text-"]) {
+  color: hsl(var(--foreground)) !important;
+}
+
+.dark .pdf-export .text-muted-foreground {
+  color: hsl(var(--muted-foreground)) !important;
+}
+
+.dark .pdf-export .bg-card,
+.dark .pdf-export [data-slot="card"],
+.dark .pdf-export .card {
+  background-color: hsl(var(--card)) !important;
+  color: hsl(var(--card-foreground)) !important;
+}
+
+.dark .pdf-export .border-border {
+  border-color: hsl(var(--border)) !important;
+}

@@ -1,0 +1,16 @@
+-- Add onboarding fields to profiles table
+ALTER TABLE public.profiles 
+ADD COLUMN IF NOT EXISTS perfil_completo BOOLEAN DEFAULT false,
+ADD COLUMN IF NOT EXISTS imc DECIMAL(5,2),
+ADD COLUMN IF NOT EXISTS tmb DECIMAL(8,2),
+ADD COLUMN IF NOT EXISTS calorias_diarias INT,
+ADD COLUMN IF NOT EXISTS tema_cor VARCHAR(50) DEFAULT 'amarelo',
+ADD COLUMN IF NOT EXISTS tipo_exercicio TEXT,
+ADD COLUMN IF NOT EXISTS macros_proteina_pct INT DEFAULT 30,
+ADD COLUMN IF NOT EXISTS macros_carboidrato_pct INT DEFAULT 40,
+ADD COLUMN IF NOT EXISTS macros_lipidio_pct INT DEFAULT 30,
+ADD COLUMN IF NOT EXISTS aviso_macros_desequilibrio BOOLEAN DEFAULT false,
+ADD COLUMN IF NOT EXISTS aviso_proteina_baixa BOOLEAN DEFAULT false,
+ADD COLUMN IF NOT EXISTS aviso_carboidrato_alto BOOLEAN DEFAULT false,
+ADD COLUMN IF NOT EXISTS questionario_respondido_em TIMESTAMP WITH TIME ZONE,
+ADD COLUMN IF NOT EXISTS macros_atualizados_em TIMESTAMP WITH TIME ZONE;
