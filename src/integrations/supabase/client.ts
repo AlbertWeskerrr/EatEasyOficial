@@ -2,21 +2,36 @@
 import { createClient } from '@supabase/supabase-js';
 import type { Database } from './types';
 
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || "";
-const SUPABASE_PUBLISHABLE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || import.meta.env.VITE_SUPABASE_ANON_KEY || "";
+const getSafeEnv = (key: string) => {
+  const val = import.meta.env[key];
+  if (typeof val !== 'string') return "";
+  return val.replace(/^["']|["']$/g, "").trim();
+};
+
+const SUPABASE_URL = getSafeEnv("VITE_SUPABASE_URL");
+const SUPABASE_PUBLISHABLE_KEY = getSafeEnv("VITE_SUPABASE_PUBLISHABLE_KEY") || getSafeEnv("VITE_SUPABASE_ANON_KEY");
 
 if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
-  console.error("Erro: VITE_SUPABASE_URL ou VITE_SUPABASE_PUBLISHABLE_KEY não encontrados. Verifique as variáveis de ambiente na Vercel.");
+  console.warn("Aviso: VITE_SUPABASE_URL ou VITE_SUPABASE_PUBLISHABLE_KEY não configurados.");
 }
 
-export const supabase = createClient<Database>(
-  SUPABASE_URL || "https://placeholder.supabase.co",
-  SUPABASE_PUBLISHABLE_KEY || "placeholder",
-  {
-    auth: {
-      storage: localStorage,
-      persistSession: true,
-      autoRefreshToken: true,
+let client;
+try {
+  client = createClient<Database>(
+    SUPABASE_URL || "https://placeholder.supabase.co",
+    SUPABASE_PUBLISHABLE_KEY || "placeholder",
+    {
+      auth: {
+        storage: typeof window !== 'undefined' ? window.localStorage : undefined,
+        persistSession: true,
+        autoRefreshToken: true,
+      }
     }
-  }
-);
+  );
+} catch (e) {
+  console.error("Erro crítico ao inicializar Supabase:", e);
+  // Fallback para evitar que o import quebre o app
+  client = { auth: { onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => { } } } }), getSession: async () => ({ data: { session: null } }) } } as any;
+}
+
+export const supabase = client;
