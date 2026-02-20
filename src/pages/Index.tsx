@@ -40,7 +40,7 @@ const Index = () => {
   const checkAuthAndProfile = async () => {
     try {
       const { data: { session } } = await supabase.auth.getSession();
-      
+
       if (!session?.user) {
         setLoading(false);
         return;
@@ -72,6 +72,7 @@ const Index = () => {
           .from('profiles')
           .upsert(
             {
+              id: session.user.id, // Primary Key (V4)
               user_id: session.user.id,
               email,
               nome,
@@ -82,6 +83,7 @@ const Index = () => {
 
         if (upsertError) {
           console.error('Error creating minimal profile:', upsertError);
+          alert('ERRO NO BANCO (Index): ' + upsertError.message);
           setLoading(false);
           return;
         }
@@ -148,15 +150,15 @@ const Index = () => {
           const sexo = (profile.sexo?.toLowerCase() || 'outro') as 'masculino' | 'feminino' | 'outro';
           const nivelAtividade = (profile.nivel_atividade || 'Moderada') as 'Sedentário' | 'Leve' | 'Moderada' | 'Alta' | 'Muito Alta';
           const objetivo = (profile.objetivo || 'Manutenção') as Objetivo;
-          
+
           const peso = Number(healthData.peso_kg) || 70;
           const altura = healthData.altura_cm || 170;
           const idade = profile.idade || 30;
-          
+
           const tdee = calculateTDEE(peso, altura, idade, sexo, nivelAtividade);
           const calorias = calculateTargetCalories(tdee, objetivo, sexo);
           const recommendation = getRecommendationByGoal(objetivo, peso, calorias);
-          
+
           await supabase.from('user_macro_plans').insert({
             user_id: session.user.id,
             objetivo,
@@ -235,10 +237,10 @@ const Index = () => {
 
   const handleOnboardingComplete = async () => {
     setShowOnboarding(false);
-    
+
     // Re-fetch profile to get updated data
     await checkAuthAndProfile();
-    
+
     if (client) {
       const sexoMap: Record<string, 'masculino' | 'feminino' | 'outro'> = {
         'Masculino': 'masculino',

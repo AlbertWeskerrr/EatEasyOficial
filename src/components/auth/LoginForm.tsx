@@ -104,17 +104,22 @@ export function LoginForm({ onForgotPassword, onSuccess }: LoginFormProps) {
           });
 
           // Show welcome message
-          onSuccess({ 
-            nome: profile.nome, 
-            sexo: (profile.sexo as 'masculino' | 'feminino' | 'outro') || 'outro' 
+          onSuccess({
+            nome: profile.nome,
+            sexo: (profile.sexo as 'masculino' | 'feminino' | 'outro') || 'outro'
           });
 
-          // Delay setting logged in to show welcome message
-          setTimeout(() => {
-            setIsLoggedIn(true);
-          }, 4000);
+          // Log profile data
+          console.log('Perfil carregado:', profile);
+
+          // SUCCESS: Stop loading and go!
+          setIsLoggedIn(true);
+          onSuccess({
+            nome: profile.nome,
+            sexo: (profile.sexo as 'masculino' | 'feminino' | 'outro') || 'outro'
+          });
         } else {
-          // Deixa o Index (listener de auth) criar/buscar o perfil e liberar o dashboard.
+          console.warn('Perfil não encontrado, deixando Index tratar.');
           setIsLoggedIn(true);
         }
       }
@@ -140,11 +145,10 @@ export function LoginForm({ onForgotPassword, onSuccess }: LoginFormProps) {
               setEmail(e.target.value);
               setErrors((prev) => ({ ...prev, email: undefined }));
             }}
-            className={`pl-10 h-12 border-2 transition-colors text-gray-900 placeholder:text-gray-500 ${
-              errors.email 
-                ? 'border-easyeat-error focus:border-easyeat-error' 
+            className={`pl-10 h-12 border-2 transition-colors text-gray-900 placeholder:text-gray-500 ${errors.email
+                ? 'border-easyeat-error focus:border-easyeat-error'
                 : 'border-gray-200 focus:border-easyeat-primary'
-            }`}
+              }`}
             disabled={isLoading}
           />
         </div>
@@ -168,11 +172,10 @@ export function LoginForm({ onForgotPassword, onSuccess }: LoginFormProps) {
               setPassword(e.target.value);
               setErrors((prev) => ({ ...prev, password: undefined }));
             }}
-            className={`pl-10 pr-10 h-12 border-2 transition-colors text-gray-900 placeholder:text-gray-500 ${
-              errors.password 
-                ? 'border-easyeat-error focus:border-easyeat-error' 
+            className={`pl-10 pr-10 h-12 border-2 transition-colors text-gray-900 placeholder:text-gray-500 ${errors.password
+                ? 'border-easyeat-error focus:border-easyeat-error'
                 : 'border-gray-200 focus:border-easyeat-primary'
-            }`}
+              }`}
             disabled={isLoading}
           />
           <button
@@ -200,8 +203,8 @@ export function LoginForm({ onForgotPassword, onSuccess }: LoginFormProps) {
         </button>
       </div>
 
-      <Button 
-        type="submit" 
+      <Button
+        type="submit"
         className="w-full h-12 text-base font-semibold bg-easyeat-primary hover:bg-easyeat-secondary text-easyeat-dark transition-colors"
         disabled={isLoading}
       >
