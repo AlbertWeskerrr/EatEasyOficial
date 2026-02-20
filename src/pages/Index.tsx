@@ -41,12 +41,13 @@ const Index = () => {
     try {
       const { data: { session } } = await supabase.auth.getSession();
 
-      if (!session?.user) {
+      if (session?.user) {
+        setUserId(session.user.id);
+        setIsLoggedIn(true); // ENTRA LOGO, DEPOIS CARREGA O PERFIL
+      } else {
         setLoading(false);
         return;
       }
-
-      setUserId(session.user.id);
 
       // CRITICAL: Always filter by user_id
       const { data: profile, error } = await supabase
@@ -231,6 +232,7 @@ const Index = () => {
       setLoading(false);
     } catch (error) {
       console.error('Error checking auth:', error);
+      alert('ERRO CRÍTICO AUTH: ' + (error as Error).message);
       setLoading(false);
     }
   };
